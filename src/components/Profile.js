@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {
   Container,
   PictureContainer,
+  HeaderContainer,
   InputContainer,
   CommentInput,
   CommentListContainer,
@@ -10,9 +11,9 @@ import {
 } from '../styled-components/Profile'
 
 import StarRating from './StarRating'
-import { SubscribeModal } from './SubscribeModal'
-
-import Global from '../styles/Global'
+import SubscribeModal from './SubscribeModal'
+import LoginModal from './LoginModal'
+import { Notification } from './Notification'
 
 import avatarAkantorex from '../images/avatar.jpg'
 import logo from '../images/logo.svg'
@@ -41,27 +42,60 @@ class Profile extends Component {
       }
     ],
     inputComment: '',
-    activeUser: 'Admin',
-    showSubscribeModal: false
+    activeUser: '',
+    showSubscribeModal: false,
+    showLoginModal: false,
+
+    notificationType: '',
+    notificationMessage: '',
+    showNotification: false
   }
 
   render() {
-    const { commentList, inputComment, showSubscribeModal, streamers } = this.state
+    const {
+      streamers,
+      commentList,
+      inputComment,
+      activeUser,
+      showSubscribeModal,
+      showLoginModal,
+      notificationType,
+      notificationMessage,
+      showNotification
+    } = this.state
 
     return (
       <Container>
         {/* MODAL */}
         <SubscribeModal show={showSubscribeModal} toggleModal={this._toggleSubscribeModal} />
+        <LoginModal
+          show={showLoginModal}
+          toggleModal={this._toggleLoginModal}
+          handleLogin={this._handleLogin}
+        />
+
+        {/* NOTIFICATION */}
+        <Notification
+          type={notificationType}
+          message={notificationMessage}
+          show={showNotification}
+        />
 
         <StreamCruxLogo src={logo} />
         <PictureContainer image={streamers.avatar} name={streamers.name} />
         <StarRating toggleModal={this._toggleSubscribeModal} />
-        <InputContainer>
+        <HeaderContainer>
           <h1>Your Comments.</h1>
+          <button onClick={activeUser === '' ? this._toggleLoginModal : this._handleLogout}>
+            {activeUser === '' ? 'Login' : 'Logout'}
+          </button>
+        </HeaderContainer>
+        <InputContainer>
           <CommentInput
+            disabled={activeUser === ''}
             type="text"
             rows="3"
-            placeholder="Type your comment here..."
+            placeholder={activeUser === '' ? 'Login to post comment' : 'Type your comment here...'}
             onChange={e => this.setState({ inputComment: e.target.value })}
             value={inputComment}
           />
@@ -84,9 +118,42 @@ class Profile extends Component {
     this.setState({ showSubscribeModal: !oldState })
   }
 
+  _toggleLoginModal = () => {
+    let oldState = this.state.showLoginModal
+    this.setState({ showLoginModal: !oldState })
+  }
+
+  _handleLogout = () => {
+    const oldUser = this.state.activeUser
+    this.setState({ activeUser: '' })
+    this._handleNotification('INFO', `Bye ${oldUser}!`)
+  }
+
+  _handleLogin = user => {
+    this.setState({ activeUser: user })
+    this._handleNotification('INFO', `Hi ${user}!`)
+  }
+
+  _handleNotification = (type, message) => {
+    this.setState({ showNotification: true, notificationType: type, notificationMessage: message })
+    setTimeout(() => {
+      this.setState({ showNotification: false })
+    }, 1000)
+  }
+
   _postComment = () => {
     const { commentList, activeUser, inputComment } = this.state
-    if (inputComment === '') return false
+    // Handle if user not logged in
+    if (activeUser === '') {
+      this._handleNotification('DANGER', 'Login first to post a comment!')
+      return false
+    }
+
+    //Handle if comment input field is empty
+    if (inputComment === '') {
+      this._handleNotification('DANGER', 'Comment should not be empty!')
+      return false
+    }
 
     let oldCommentList = [...commentList]
     let newCommentList = [
@@ -97,6 +164,7 @@ class Profile extends Component {
       }
     ]
     this.setState({ commentList: newCommentList, inputComment: '' })
+    this._handleNotification('INFO', 'Comment posted!')
     return true
   }
 }

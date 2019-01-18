@@ -1,28 +1,46 @@
-// import React from 'react'
+import React, { Component } from 'react'
 
-// import {
-//   ModalBackground,
-//   ModalContainer,
-//   InputContainer,
-//   CloseIcon
-// } from '../styled-components/SubscribeModal'
+import {
+  ModalBackground,
+  ModalContainer,
+  InputContainer,
+  CloseIcon
+} from '../styled-components/Modal'
 
-// const SubscribeModal = ({ toggleModal, show }) => {
-//   const showHideClassName = show ? 'modal display-block' : 'modal display-none'
+class LoginModal extends Component {
+  state = {
+    inputName: ''
+  }
 
-//   return (
-//     <ModalBackground show={show} className={showHideClassName}>
-//       <ModalContainer className="modal-main">
-//         <h1>Subscribe to CruxFeed</h1>
-//         <h3>Stay up to date! Get all the latest CruxFeed posts straight to your inbox!</h3>
-//         <InputContainer>
-//           <input type="text" placeholder="your.email@example.com" />
-//           <button>Subscribe</button>
-//         </InputContainer>
-//       </ModalContainer>
-//       <CloseIcon icon="times" size="3x" onClick={toggleModal} />
-//     </ModalBackground>
-//   )
-// }
+  render() {
+    const { toggleModal, show, handleLogin } = this.props
+    const { inputName } = this.state
 
-// export { SubscribeModal }
+    return (
+      <ModalBackground show={show}>
+        <ModalContainer>
+          <h1>Login to StreamCrux</h1>
+          <h3>You can post comments to this streamers if you do so!</h3>
+          <InputContainer>
+            <input
+              type="text"
+              placeholder="your name"
+              onChange={e => this.setState({ inputName: e.target.value })}
+            />
+            <button
+              onClick={() => {
+                handleLogin(inputName)
+                toggleModal()
+              }}
+            >
+              Login
+            </button>
+          </InputContainer>
+        </ModalContainer>
+        <CloseIcon icon="times" size="2x" onClick={toggleModal} />
+      </ModalBackground>
+    )
+  }
+}
+
+export default LoginModal

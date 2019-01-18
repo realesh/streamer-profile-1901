@@ -33,20 +33,66 @@ const PictureContainer = styled.div`
   background-position: center;
   background-size: cover;
 
+  &::before {
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    content: attr(name);
+    color: ${font};
+    font-size: 2em;
+
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+
+    transition: opacity 0.25s ease-in-out;
+  }
+
   &:hover {
     &::before {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      content: attr(name);
-      color: ${font};
-      font-size: 2em;
+      opacity: 1;
+    }
+  }
+`
 
-      position: absolute;
-      top: 0;
-      height: 100%;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.8);
+const HeaderContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 40vw;
+
+  margin-bottom: 10px;
+
+  > h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 2em;
+    color: ${font};
+  }
+
+  > button {
+    margin: 0;
+    padding: 8px 15px;
+
+    border-radius: 20px;
+    border: 2px solid ${font};
+    background: none;
+    font-size: 0.8em;
+    font-weight: 700;
+    color: ${font};
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      color: ${highlight};
+      border-color: ${highlight};
     }
   }
 `
@@ -58,14 +104,6 @@ const InputContainer = styled.div`
   align-items: center;
 
   width: 40vw;
-
-  > h1 {
-    align-self: flex-start;
-    margin: 0 0 10px 0;
-    padding: 0;
-    font-size: 2em;
-    color: ${font};
-  }
 
   > button {
     align-self: flex-end;
@@ -171,6 +209,7 @@ export {
   Container,
   StreamCruxLogo,
   PictureContainer,
+  HeaderContainer,
   InputContainer,
   CommentInput,
   CommentListContainer,

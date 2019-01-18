@@ -16,18 +16,24 @@ const closeIconRotate = keyframes`
 `
 
 const ModalBackground = styled.div`
-  display: ${props => (props.show ? 'flex' : 'none')};
+  display: flex;
   justify-content: center;
   align-items: center;
 
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
 
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.8);
   z-index: 1;
+
+  visibility: ${props => (props.show ? 'visible' : 'hidden')};
+  opacity: ${props => (props.show ? 1 : 0)};
+  transition: all 0.3s ease-out 0.2s;
 `
 
 const ModalContainer = styled.div`
@@ -68,7 +74,7 @@ const InputContainer = styled.div`
   > input {
     flex: 2;
     margin-right: 20px;
-    padding: 20px 30px;
+    padding: 15px 25px;
 
     border-radius: 15px;
     border: 2px solid ${fontDark};
@@ -93,7 +99,7 @@ const InputContainer = styled.div`
 
   > button {
     align-self: flex-end;
-    padding: 20px 30px;
+    padding: 15px 25px;
 
     border-radius: 15px;
     border: 2px solid #080b15;
@@ -123,8 +129,8 @@ const CloseIcon = styled(FontAwesomeIcon)`
   color: ${font};
 
   &:hover {
-    color: ${highlightLight};
     animation: ${closeIconRotate} 0.2s linear;
+    color: ${highlightLight};
   }
 `
 

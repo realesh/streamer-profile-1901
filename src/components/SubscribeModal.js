@@ -5,7 +5,7 @@ import {
   ModalContainer,
   InputContainer,
   CloseIcon
-} from '../styled-components/SubscribeModal'
+} from '../styled-components/Modal'
 
 class SubscribeModal extends Component {
   state = {
@@ -14,11 +14,10 @@ class SubscribeModal extends Component {
 
   render() {
     const { toggleModal, show } = this.props
-    const showHideClassName = show ? 'modal display-block' : 'modal display-none'
 
     return (
-      <ModalBackground show={show} className={showHideClassName}>
-        <ModalContainer className="modal-main">
+      <ModalBackground show={show}>
+        <ModalContainer>
           <h1>Subscribe to CruxFeed</h1>
           <h3>Stay up to date! Get all the latest CruxFeed posts straight to your inbox!</h3>
           <InputContainer>
@@ -40,4 +39,4 @@ class SubscribeModal extends Component {
   }
 }
 
-export { SubscribeModal }
+export default SubscribeModal
