@@ -23,8 +23,8 @@ const StreamCruxLogo = styled.img`
 const PictureContainer = styled.div`
   position: relative;
   display: flex;
-  height: 300px;
-  width: 300px;
+  height: 280px;
+  width: 280px;
   margin: 50px;
   border-radius: 150px;
   overflow: hidden;
@@ -57,7 +57,7 @@ const InputContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 45vw;
+  width: 40vw;
 
   > h1 {
     align-self: flex-start;
@@ -126,7 +126,7 @@ const CommentListContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 40vw;
+  width: 35vw;
 
   margin: 20px 0 40px 0;
 `

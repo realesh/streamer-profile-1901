@@ -41,7 +41,7 @@ const ModalContainer = styled.div`
   > h1 {
     margin: 0 0 10px 0;
     padding: 0;
-    font-size: 5em;
+    font-size: 4em;
     color: ${font};
   }
 
@@ -50,7 +50,7 @@ const ModalContainer = styled.div`
     padding: 0;
 
     text-align: center;
-    font-size: 3em;
+    font-size: 2.5em;
     font-weight: lighter;
     color: ${font};
   }
@@ -74,7 +74,7 @@ const InputContainer = styled.div`
     border: 2px solid ${fontDark};
     background-color: ${fontLight};
 
-    font-size: 1.5em;
+    font-size: 1.3em;
     color: ${fontDark};
 
     &:focus {
@@ -98,7 +98,7 @@ const InputContainer = styled.div`
     border-radius: 15px;
     border: 2px solid #080b15;
     background: linear-gradient(${highlight}, ${highlightDark});
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-weight: 700;
     color: ${fontDark};
     cursor: pointer;

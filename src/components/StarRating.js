@@ -13,7 +13,7 @@ class StarRating extends Component {
         {ratings.map((rating, index) => (
           <StarIcon
             icon={this._renderStarType(index)}
-            size="3x"
+            size="2x"
             onClick={() => this._handleStarClick(index)}
             active={rating !== 'empty'}
           />

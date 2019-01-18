@@ -30,7 +30,7 @@ class SubscribeModal extends Component {
             <button onClick={this._submitSubscriber}>Subscribe</button>
           </InputContainer>
         </ModalContainer>
-        <CloseIcon icon="times" size="3x" onClick={toggleModal} />
+        <CloseIcon icon="times" size="2x" onClick={toggleModal} />
       </ModalBackground>
     )
   }
