@@ -1,28 +1,16 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import Profile from './components/Profile'
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faStarHalfAlt, faStar, faTimes } from '@fortawesome/free-solid-svg-icons'
+import regular from '@fortawesome/fontawesome-free-regular'
+
+library.add(faStar, faStarHalfAlt, faTimes, regular)
 
 class App extends Component {
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+    return <Profile />
   }
 }
 
-export default App;
+export default App
