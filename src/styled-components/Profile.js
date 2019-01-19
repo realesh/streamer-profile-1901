@@ -38,8 +38,7 @@ const PictureContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    /* content: attr(name); */
-    content: ' ';
+    content: attr(name);
     color: ${font};
     font-size: 2em;
 
@@ -108,7 +107,7 @@ const InputContainer = styled.div`
 
   > button {
     align-self: flex-end;
-    margin: 10px 0 0 0;
+    margin-top: 10px;
     padding: 15px 25px;
 
     border-radius: 5px;
@@ -201,8 +200,8 @@ const CommentItem = styled.div`
     margin: 0;
     padding: 0;
 
-    color: ${font};
     font-size: 1.2em;
+    color: ${font};
   }
 `
 

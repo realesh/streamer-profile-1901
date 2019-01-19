@@ -31,7 +31,6 @@ class StarRating extends Component {
         status: 'normal'
       }
     ],
-    // ratings: ['full', 'full', 'full', 'empty', 'empty'],
     starHovered: { index: -1, position: '' }
   }
 
@@ -98,11 +97,14 @@ class StarRating extends Component {
 
     let oldRatings = [...ratings]
     let newRatings = oldRatings.map(({ rating, status }, index) => {
+      //Handle half-star clicked
       if (position === 'left') {
         if (index < starIndex) return { rating: 'full', status: 'normal' }
         else if (index === starIndex) return { rating: 'half', status: 'normal' }
         else return { rating: 'empty', status: 'dim' }
-      } else {
+      }
+      //Handle full-star clicked
+      else {
         if (index <= starIndex) return { rating: 'full', status: 'normal' }
         else return { rating: 'empty', status: 'dim' }
       }

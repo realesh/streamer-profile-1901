@@ -45,14 +45,14 @@ const ModalContainer = styled.div`
   width: 50%;
 
   > h1 {
-    margin: 0 0 10px 0;
+    margin-bottom: 10px;
     padding: 0;
     font-size: 4em;
     color: ${font};
   }
 
   > h3 {
-    margin: 0 0 10px 0;
+    margin-bottom: 10px;
     padding: 0;
 
     text-align: center;

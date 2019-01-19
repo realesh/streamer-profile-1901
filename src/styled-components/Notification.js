@@ -21,9 +21,9 @@ const Container = styled.div`
   transition: all 0.3s ease-in-out;
 
   > h4 {
-    font-size: 1em;
-    color: ${props => (props.type === 'DANGER' ? font : fontDark)}
     margin: 15px 25px;
+    font-size: 1em;
+    color: ${props => (props.type === 'DANGER' ? font : fontDark)};
   }
 `
 

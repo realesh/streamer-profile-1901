@@ -68,7 +68,7 @@ class Profile extends Component {
 
     return (
       <Container>
-        {/* MODAL */}
+        {/* MODAL COMPONENTS */}
         <SubscribeModal
           show={showSubscribeModal}
           toggleModal={this._toggleSubscribeModal}
@@ -80,7 +80,7 @@ class Profile extends Component {
           handleLogin={this._handleLogin}
         />
 
-        {/* NOTIFICATION */}
+        {/* NOTIFICATION COMPONENTS */}
         <Notification
           type={notificationType}
           message={notificationMessage}
@@ -89,7 +89,10 @@ class Profile extends Component {
 
         <StreamCruxLogo src={logo} />
         <PictureContainer image={streamers.avatar} name={streamers.name} />
+
+        {/* STAR RATING COMPONENTS */}
         <StarRating toggleModal={this._toggleSubscribeModal} />
+
         <HeaderContainer>
           <h1>Your Comments.</h1>
           <button onClick={activeUser === '' ? this._toggleLoginModal : this._handleLogout}>
@@ -107,6 +110,7 @@ class Profile extends Component {
           />
           <button onClick={this._postComment}>Post Comment</button>
         </InputContainer>
+
         <CommentListContainer>
           {commentList.map(comment => (
             <CommentItem>
