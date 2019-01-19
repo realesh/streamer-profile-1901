@@ -48,7 +48,9 @@ class Profile extends Component {
 
     notificationType: '',
     notificationMessage: '',
-    showNotification: false
+    showNotification: false,
+
+    subscriberList: []
   }
 
   render() {
@@ -67,7 +69,11 @@ class Profile extends Component {
     return (
       <Container>
         {/* MODAL */}
-        <SubscribeModal show={showSubscribeModal} toggleModal={this._toggleSubscribeModal} />
+        <SubscribeModal
+          show={showSubscribeModal}
+          toggleModal={this._toggleSubscribeModal}
+          handleSubscribe={this._handleSubscribe}
+        />
         <LoginModal
           show={showLoginModal}
           toggleModal={this._toggleLoginModal}
@@ -123,6 +129,13 @@ class Profile extends Component {
     this.setState({ showLoginModal: !oldState })
   }
 
+  _handleSubscribe = email => {
+    let oldSubscriber = [...this.state.subscriberList]
+    let newSubscriber = [...oldSubscriber, email]
+    this.setState({ subscriberList: newSubscriber })
+    this._handleNotification('INFO', `${email} subscribed!`)
+  }
+
   _handleLogout = () => {
     const oldUser = this.state.activeUser
     this.setState({ activeUser: '' })
@@ -138,7 +151,7 @@ class Profile extends Component {
     this.setState({ showNotification: true, notificationType: type, notificationMessage: message })
     setTimeout(() => {
       this.setState({ showNotification: false })
-    }, 1000)
+    }, 1500)
   }
 
   _postComment = () => {

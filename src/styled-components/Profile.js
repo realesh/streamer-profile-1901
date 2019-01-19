@@ -38,7 +38,8 @@ const PictureContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    content: attr(name);
+    /* content: attr(name); */
+    content: ' ';
     color: ${font};
     font-size: 2em;
 

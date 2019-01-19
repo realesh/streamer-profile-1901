@@ -13,6 +13,7 @@ class SubscribeModal extends Component {
   }
 
   render() {
+    const { inputEmail } = this.state
     const { toggleModal, show } = this.props
 
     return (
@@ -24,9 +25,17 @@ class SubscribeModal extends Component {
             <input
               type="email"
               placeholder="your.email@example.com"
+              value={inputEmail}
               onChange={e => this.setState({ inputEmail: e.target.value })}
             />
-            <button onClick={this._submitSubscriber}>Subscribe</button>
+            <button
+              onClick={() => {
+                this._submitSubscriber()
+                toggleModal()
+              }}
+            >
+              Subscribe
+            </button>
           </InputContainer>
         </ModalContainer>
         <CloseIcon icon="times" size="2x" onClick={toggleModal} />
@@ -35,7 +44,10 @@ class SubscribeModal extends Component {
   }
 
   _submitSubscriber = () => {
-    alert(this.state.inputEmail)
+    const { inputEmail } = this.state
+    const { handleSubscribe } = this.props
+    handleSubscribe(inputEmail)
+    this.setState({ inputEmail: '' })
   }
 }
 

@@ -29,7 +29,7 @@ class LoginModal extends Component {
             />
             <button
               onClick={() => {
-                handleLogin(inputName)
+                this._loginUser()
                 toggleModal()
               }}
             >
@@ -40,6 +40,13 @@ class LoginModal extends Component {
         <CloseIcon icon="times" size="2x" onClick={toggleModal} />
       </ModalBackground>
     )
+  }
+
+  _loginUser = () => {
+    const { inputName } = this.state
+    const { handleLogin } = this.props
+    handleLogin(inputName)
+    this.setState({ inputName: '' })
   }
 }
 
